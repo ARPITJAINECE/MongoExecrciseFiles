@@ -1,0 +1,71 @@
+to see databases:      show dbs;
+to make a database:    useDAC23;
+						start
+
+to see the records:		db.emp.find().pretty();
+to insert the record:	db.emp.insert({empno:1,ename:'arpit'});
+db.emp.insert({_id:1,ename:'arpit'});
+
+
+ EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL      | COMM    | DEPTNO
+ 
+ db.emp.insert({empno:3,ename:'iacsd',job:'manager',hiredate:ISODate("2022-10-10"),sal:10000,comm:100,deptno:2});
+ 
+ db.createcollection("abc");
+ 
+ db.emp.insert({empid:1111,ename:'ajain',sal:458691,
+ hobbies:['reading','biking','trekking'],
+ dept:{deptno:12,dname:'rnd'},
+ experience:[{name:'oracle',years:3,desg:"senior manager"},{name:'yahoo',years:5}]
+ });
+ 
+ 
+ db.emp.insert({empid:101,ename:'arpit jain',sal:15946,
+ hobbies:['volleyball','swimming'],dept:{deptno:12,dname:'a_123',dname:'HR'},
+ experience:[{name:'facebook',years:3,designation:'CTO',doj:ISODate("2018-01-05")},{name:'oracle',years:5,designation:'CE O'}]});
+ 
+								operators in mongo
+
+db.movie.find({rating:5}).pretty();
+ 
+ db.movie.find({rating:5,price:200}).pretty()
+ 
+ db.movie.find({rating:{$gt:5}}).pretty()
+ 
+ db.movie.find({rating:{$gt:5},price:{$lt:400}}).pretty()
+ 
+ db.movie.find({}).pretty()
+ 
+ db.movie.find({$or:[{rating:{$gt:5}},{price:{$lt:400}}]}).pretty()
+ 
+ db.movie.find({price:{$in:[200,210,350]}}).pretty()
+ 
+ db.movie.find({price:{$nin:[200,210,350]}}).pretty()
+ 
+ db.movie.find({rating:{$mod:[2,0]}}).pretty()
+ 
+ db.movie.find({rating:{$mod:[2,1]}}).pretty()
+ 
+ db.movie.find({},{rating:0,_id:0}).pretty()
+ 
+ db.movie.find({rating:{$mod:[2,1]}},{name:1,rating:1,_id:0}).pretty()
+ 
+ db.movie.find({price:{$gte:200,$lt:400}}).pretty();
+ 
+ db.movie.find({rating:{$type:"string"}}).pretty()
+ 
+ db.movie.find({rating:{$not:{$type:"string"}}}).pretty()
+ 
+ db.movie.find({actor:'Amitabh'}).pretty()
+ 
+ db.movie.find({"actor.0":"Amitabh"}).pretty();
+ 
+ db.restaurants.find({"address.zipcode":"11238"}).pretty()
+ 
+ db.restaurants.find({"grades.score":9}).pretty()
+ 
+ db.movie.find({"actor":/^[Aa]mitabh/}).pretty()
+ 
+ db.movie.find({name:/[0-9]$/}).pretty()
+ 
+ db.movie.find({name:/^[Pp].*[a t]$/}).pretty()
